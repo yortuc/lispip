@@ -15,6 +15,14 @@ def evl_single(root, context):
                 return context[root.val]
             else:
                 return root.val
+    
+    elif root.token_type == 'list':
+        # evaluate all items in list and return
+        evaluated_list = []
+        for t in root.val:
+            evaluated_list.append(evl_single(t, context))
+        return evaluated_list
+
     elif root.token_type == 'func':
         if root.name == 'defun':
             # define function

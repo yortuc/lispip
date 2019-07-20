@@ -33,4 +33,26 @@ def test_tokenize_with_spaces():
     
     assert all([a == b for a, b in zip(result, expected)])
 
-    
+def test_tokenize_list():
+    result = tokenize("'(1 2 3)")
+
+    expected = [
+        Token('list_open'),
+        Token('word', '1'), Token('word', '2'), Token('word', '3'),
+        Token('list_close')
+    ]
+
+    assert all([a == b for a, b in zip(result, expected)])
+
+def test_tokenize_list_in_func():
+    result = tokenize("(avg '(1 2 3))")
+
+    expected = [
+        Token('open'), Token('word', 'avg'),
+        Token('list_open'),
+        Token('word', '1'), Token('word', '2'), Token('word', '3'),
+        Token('list_close'),
+        Token('close')
+    ]
+
+    assert all([a == b for a, b in zip(result, expected)])

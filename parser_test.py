@@ -22,4 +22,11 @@ def test_parse_list_of_expressions():
     expected_ast = [Func('print'), Func('exit')]
 
     assert all([a == b for a, b in zip(result, expected_ast)])
-    
+
+def test_parse_list():
+    tokens = tokenize("'(1 2 3)")
+    result = parse(tokens)
+    expected_list_items = [
+        Token('word', '1'), Token('word', '2'), Token('word', '3')
+    ]
+    assert result.token_type == 'list' and all([a == b for a, b in zip(result.val, expected_list_items)])

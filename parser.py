@@ -1,3 +1,4 @@
+from tokenizer import Token
 from collections import deque
 
 class Func:
@@ -18,9 +19,11 @@ def parse(tokens):
     stack = deque()
     
     for k in tokens:
-        if k.token_type == 'open' or k.token_type == 'word':
+        if k.token_type == 'open' or k.token_type == 'word' or k.token_type =='list_open':
             stack.append(k)
-        elif k.token_type == 'close':
+
+        elif k.token_type == 'close': 
+            # create function
             sub = []
             while True:
                 cur = stack.pop()
@@ -30,7 +33,18 @@ def parse(tokens):
                     sub = [cur] + sub
             result = Func(sub[0].val, sub[1:])
             stack.append(result)
-            
+
+        elif k.token_type == 'list_close':
+            sub = []
+            while True:
+                cur = stack.pop()
+                if cur.token_type == 'list_open':
+                    break
+                else:
+                    sub = [cur] + sub
+            result = Token('list', sub)
+            stack.append(result)
+
     if len(stack) == 1:
         return stack.pop()
     else:

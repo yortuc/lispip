@@ -25,6 +25,7 @@ def tokenize(exp):
 
     tokens = []
     w = ''
+    list_open = False
     
     def add_word():
         nonlocal w
@@ -32,15 +33,27 @@ def tokenize(exp):
             tokens.append(Token('word', w))
             w = ''
     
-    for k in exp:                
+    index = 0
+    while index < len(exp):  
+        k = exp[index]
         if k == '(':
             tokens.append(Token('open'))
+        
         elif k == ')':
             add_word()
-            tokens.append(Token('close'))
+            tokens.append(Token('list_close' if list_open else 'close'))
+            list_open = False
+        
         elif k == ' ':
             add_word()
+
+        elif k == "'": # list starter
+            if exp[index+1] == '(':
+                list_open = True
+                tokens.append(Token('list_open'))
+                index += 1
         else:
             w = w + k
+        index += 1
     
     return tokens

@@ -29,3 +29,13 @@ def test_if_false():
     ast = parse(tokenize('(if (= 5 1) TRUE FALSE)'))
     result = evl(ast, ctx)
     assert result == 'FALSE'
+
+def test_eval_list():
+    ast = parse(tokenize("'(1 2 3)"))
+    result = evl(ast, ctx)
+    assert result == [1, 2, 3]
+
+def test_eval_list_functions():
+    ast = parse(tokenize("(avg '(1 2 3))"))
+    result = evl(ast, ctx)
+    assert result == 2.0

@@ -29,3 +29,9 @@
 )
 (print (factorial 5))
 ```
+
+### TODO
+- List type
+- Remove `params` keyword in function definition
+- Run from file
+- Package management
