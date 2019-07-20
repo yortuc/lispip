@@ -9,7 +9,8 @@ ctx = {
     'add': lambda x, y: x + y,
     'mul': lambda x, y: x * y,
     'print': lambda x: print(f'>> {x}'),
-    'app': identity
+    'app': identity,
+    '=': lambda x, y: x == y
 }
 
 def run(expr, context=ctx):
