@@ -26,7 +26,7 @@ run(
 '''
 (defun factorial (params x)
     (if (< x 2)
-        (id 1)
+        1
         (mul x (factorial (- x 1)))
     )
 )

@@ -26,6 +26,6 @@ def test_define_function_in_local_scope():
     assert 'double' in context
 
 def test_if_true():
-    ast = parse(tokenize('(if (eq 1 1) (id TRUE) (id FALSE))'))
+    ast = parse(tokenize('(if (eq 1 1) TRUE FALSE)'))
     result = evl(ast, ctx)
     assert result == 'TRUE'
