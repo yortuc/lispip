@@ -15,11 +15,13 @@ ctx = {
 def run(expr, context=ctx):
     return evl(parse(tokenize(expr)), context)
 
-run('''(app
-         (defun square (params x) 
-             (mul x x))
-         
-         (defun volume (params x height) 
-             (mul (square x) height))
-             
-         (print (volume 2 6)))''')
+run(
+'''
+(defun square (params x) 
+    (mul x x))
+    
+(defun volume (params x height) 
+    (mul (square x) height))
+        
+(print (volume 2 6))
+''')

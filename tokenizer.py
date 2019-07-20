@@ -10,13 +10,19 @@ class Token:
         if isinstance(other, Token):
             return self.token_type == other.token_type and self.val == other.val
         return False
-        
-def tokenize(exp):
+
+def preprocess_strin_expression(exp):
+    """Clean the expression"""
     exp = exp.replace('\n', ' ')
     
     while exp.find('  ')>0:
         exp = exp.replace('  ', ' ')
-    
+
+    return exp
+
+def tokenize(exp):
+    exp = preprocess_strin_expression(exp)
+
     tokens = []
     w = ''
     

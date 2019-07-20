@@ -1,6 +1,24 @@
 # Lisp Clone in Python
 
-Slack day project
+
+### Install
+```
+> pipenv install
+```
+
+### Run
+```
+> pipenv shell
+> runner.py
+```
+
+### Run tests
+```
+> pipenv shell
+> pytest
+```
+
+### Basic syntax
 
 ```
 (app

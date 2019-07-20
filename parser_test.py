@@ -15,3 +15,11 @@ def test_parse_cascaded_parans():
 
     assert result.name == 'add' and all([a == b for a, b in zip(result.params, expected_params)])
     
+def test_parse_list_of_expressions():
+    tokens = tokenize('(print) (exit)')
+    result = parse(tokens)
+
+    expected_ast = [Func('print'), Func('exit')]
+
+    assert all([a == b for a, b in zip(result, expected_ast)])
+    

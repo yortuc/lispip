@@ -31,4 +31,7 @@ def parse(tokens):
             result = Func(sub[0].val, sub[1:])
             stack.append(result)
             
-    return stack.pop()
+    if len(stack) == 1:
+        return stack.pop()
+    else:
+        return list(stack)

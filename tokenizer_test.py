@@ -17,6 +17,12 @@ def test_tokenize_cascaded_parans():
 
     assert all([a == b for a, b in zip(result, expected)])
 
+def test_tokenize_list_of_expressions():
+    result = tokenize('(print 1) (exit)')
+    expected = [Token('open'), Token('word', 'print'), Token('word', '1'), Token('close'),
+                Token('open'), Token('word', 'exit'), Token('close')]
+    
+    assert all([a == b for a, b in zip(result, expected)])
 
 def test_tokenize_with_spaces():
     result = tokenize('''(mul 
