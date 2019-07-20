@@ -1,23 +1,7 @@
 from tokenizer import tokenize
 from parser import parse
 from evaluator import evl
-
-def identity(*lines):
-    pass
-
-ctx = {
-    'id': lambda x: x,
-    'add': lambda x, y: x + y,
-    '-': lambda x, y: x - y,
-    'mul': lambda x, y: x * y,
-    'print': lambda x: print(f'>> {x}'),
-    'app': identity,
-    '=': lambda x, y: x == y,
-    '<': lambda x, y: x<y,
-    '>': lambda x, y: x>y,
-    '>=': lambda x, y: x>=y,
-    '<=': lambda x, y: x<=y
-}
+from standart_context import ctx
 
 def run(expr, context=ctx):
     return evl(parse(tokenize(expr)), context)

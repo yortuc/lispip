@@ -31,6 +31,7 @@ def evl_single(root, context):
                     local_context[k] = params[i]
                 return evl(fn_body, local_context)
             context[fn_name] = run_func
+
         elif root.name == 'if':
             # (if (= a b) (a_equals_b) (a_not_equals_b))
             control_exp = root.params[0]
@@ -41,6 +42,7 @@ def evl_single(root, context):
                 return evl(control_true, context)
             else:
                 return evl(control_false, context)
+
         else:
             # standart func evaluation, first eval params
             # check func is available

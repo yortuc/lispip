@@ -1,13 +1,8 @@
 from tokenizer import tokenize
 from parser import parse
 from evaluator import evl
+from standart_context import ctx
 
-ctx = { 
-    'add': lambda x, y: x + y,
-    'mul': lambda x, y: x * y,
-    'eq' : lambda x, y: x == y,
-    'id' : lambda x: x
-}
 
 def test_evaluate_single_expression():
     ast = parse(tokenize('(add 1 2)'))
@@ -26,6 +21,13 @@ def test_define_function_in_local_scope():
     assert 'double' in context
 
 def test_if_true():
-    ast = parse(tokenize('(if (eq 1 1) TRUE FALSE)'))
+    ast = parse(tokenize('(if (= 1 1) TRUE FALSE)'))
     result = evl(ast, ctx)
     assert result == 'TRUE'
+
+def test_if_false():
+    ast = parse(tokenize('(if (= 5 1) TRUE FALSE)'))
+    result = evl(ast, ctx)
+    assert result == 'FALSE'
+
+
