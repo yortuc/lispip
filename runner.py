@@ -6,11 +6,17 @@ def identity(*lines):
     pass
 
 ctx = {
+    'id': lambda x: x,
     'add': lambda x, y: x + y,
+    '-': lambda x, y: x - y,
     'mul': lambda x, y: x * y,
     'print': lambda x: print(f'>> {x}'),
     'app': identity,
-    '=': lambda x, y: x == y
+    '=': lambda x, y: x == y,
+    '<': lambda x, y: x<y,
+    '>': lambda x, y: x>y,
+    '>=': lambda x, y: x>=y,
+    '<=': lambda x, y: x<=y
 }
 
 def run(expr, context=ctx):
@@ -18,11 +24,11 @@ def run(expr, context=ctx):
 
 run(
 '''
-(defun square (params x) 
-    (mul x x))
-    
-(defun volume (params x height) 
-    (mul (square x) height))
-        
-(print (volume 2 6))
+(defun factorial (params x)
+    (if (< x 2)
+        (id 1)
+        (mul x (factorial (- x 1)))
+    )
+)
+(print (factorial 5))
 ''')
