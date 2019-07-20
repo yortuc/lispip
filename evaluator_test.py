@@ -29,13 +29,3 @@ def test_if_false():
     ast = parse(tokenize('(if (= 5 1) TRUE FALSE)'))
     result = evl(ast, ctx)
     assert result == 'FALSE'
-
-def test_or_true():
-    ast = parse(tokenize('(if (or (= 5 4) (< 1 3)) TRUE FALSE)'))
-    result = evl(ast, ctx)
-    assert result == 'TRUE'
-
-def test_or_false():
-    ast = parse(tokenize('(if (or (= 5 4) (< 6 3)) TRUE FALSE)'))
-    result = evl(ast, ctx)
-    assert result == 'FALSE'
