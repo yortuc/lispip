@@ -16,3 +16,10 @@ run(
 )
 (print (factorial 5))
 ''')
+
+run(
+'''
+(defun double (params x) (mul x 2))
+(print (map double '(1 2 3)))
+'''
+)
