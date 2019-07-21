@@ -2,8 +2,17 @@ def extend_context(c1):
     for k in c1:
         ctx[k] = c1[k]
 
+def set_global_var(key, value):
+        ctx[key] = value
+
 ctx = {
+    'set': lambda k, v: set_global_var,
+
+    # string funcs
     'string': lambda *x: ' '.join(x),
+    'string-concat': lambda *x: ''.join(x),
+
+    # math
     'add': lambda x, y: x + y,
     '-': lambda x, y: x - y,
     'mul': lambda x, y: x * y,

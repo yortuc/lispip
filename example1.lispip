@@ -1,2 +1,5 @@
 (import url_context)
-(print (get-json "https://api.github.com/users/yortuc/repos"))
+(import system_context)
+
+(print "Enter username to download repository info")
+(print (get-json (string-concat "https://api.github.com/users/" (input) "/repos")))
