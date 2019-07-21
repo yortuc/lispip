@@ -31,6 +31,5 @@
 ```
 
 ### TODO
-- String type
 - Remove `params` keyword in function definition
 - Package management

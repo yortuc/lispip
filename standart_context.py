@@ -1,3 +1,7 @@
+def extend_context(c1):
+    for k in c1:
+        ctx[k] = c1[k]
+
 ctx = {
     'string': lambda *x: ' '.join(x),
     'add': lambda x, y: x + y,
@@ -13,10 +17,12 @@ ctx = {
     'or': lambda x, y: x or y,
 
     # List funcs
+    'list': lambda *x: [k for k in x],
     'avg': lambda lst: sum(lst)/len(lst),
     'first': lambda lst: lst[0],
     'tail': lambda lst: lst[1:],
     'map': lambda fn, lst: [fn(k) for k in lst],
-    #
-    'list': lambda *x: [k for k in x]
+    
+    # import python-binding
+    'import': lambda file_name: extend_context(getattr(__import__(file_name), 'ctx'))
 }

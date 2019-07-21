@@ -1,0 +1,7 @@
+(defun factorial (params x)
+    (if (< x 2)
+        1
+        (mul x (factorial (- x 1)))
+    )
+)
+(print (factorial 5))
