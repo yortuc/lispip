@@ -56,3 +56,9 @@ def test_tokenize_list_in_func():
     ]
 
     assert all([a == b for a, b in zip(result, expected)])
+
+def test_tokenize_string():
+    result = tokenize('("hello world!")')
+    expected = [Token('open'), Token('word', 'hello world!'), Token('close')]
+
+    assert all([a == b for a, b in zip(result, expected)])

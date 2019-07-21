@@ -30,3 +30,13 @@ def test_parse_list():
         Token('word', '1'), Token('word', '2'), Token('word', '3')
     ]
     assert result.token_type == 'list' and all([a == b for a, b in zip(result.val, expected_list_items)])
+
+
+def test_parse_string():
+    tokens = tokenize('(print "hello world!")')
+    result = parse(tokens)
+    expected = Func('print', [
+        Token('word', 'hello world!')
+    ])
+    assert result == expected
+    

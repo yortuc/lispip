@@ -1,8 +1,9 @@
 ctx = {
+    'string': lambda *x: ' '.join(x),
     'add': lambda x, y: x + y,
     '-': lambda x, y: x - y,
     'mul': lambda x, y: x * y,
-    'print': lambda x: print(f'>> {x}'),
+    'print': lambda x: print(f'{x}'),
     '=': lambda x, y: x == y,
     '!=': lambda x, y: x != y,
     '<': lambda x, y: x<y,

@@ -1,3 +1,6 @@
+import sys
+from pathlib import Path
+
 from tokenizer import tokenize
 from parser import parse
 from evaluator import evl
@@ -6,20 +9,7 @@ from standart_context import ctx
 def run(expr, context=ctx):
     return evl(parse(tokenize(expr)), context)
 
-run(
-'''
-(defun factorial (params x)
-    (if (< x 2)
-        1
-        (mul x (factorial (- x 1)))
-    )
-)
-(print (factorial 5))
-''')
+file_path = sys.argv[1]
+source_code = Path(file_path).read_text()
 
-run(
-'''
-(defun double (params x) (mul x 2))
-(print (map double '(1 2 3)))
-'''
-)
+run(source_code)

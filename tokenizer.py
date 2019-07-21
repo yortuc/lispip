@@ -11,7 +11,7 @@ class Token:
             return self.token_type == other.token_type and self.val == other.val
         return False
 
-def preprocess_strin_expression(exp):
+def preprocess_string_expression(exp):
     """Clean the expression"""
     exp = exp.replace('\n', ' ')
     
@@ -21,11 +21,12 @@ def preprocess_strin_expression(exp):
     return exp
 
 def tokenize(exp):
-    exp = preprocess_strin_expression(exp)
+    exp = preprocess_string_expression(exp)
 
     tokens = []
     w = ''
     list_open = False
+    string_open = False
     
     def add_word():
         nonlocal w
@@ -44,7 +45,7 @@ def tokenize(exp):
             tokens.append(Token('list_close' if list_open else 'close'))
             list_open = False
         
-        elif k == ' ':
+        elif k == ' ' and string_open == False:
             add_word()
 
         elif k == "'": # list starter
@@ -52,8 +53,18 @@ def tokenize(exp):
                 list_open = True
                 tokens.append(Token('list_open'))
                 index += 1
+
+        elif k == '"':
+            if string_open: # close string
+                tokens.append(Token('word', w))
+                w = ''
+                string_open = False
+            else:
+                string_open = True
+        
         else:
             w = w + k
+
         index += 1
     
     return tokens

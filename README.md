@@ -31,7 +31,6 @@
 ```
 
 ### TODO
-- List type
+- String type
 - Remove `params` keyword in function definition
-- Run from file
 - Package management
