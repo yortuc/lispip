@@ -62,3 +62,9 @@ def test_tokenize_string():
     expected = [Token('open'), Token('word', 'hello world!'), Token('close')]
 
     assert all([a == b for a, b in zip(result, expected)])
+
+def test_ignore_comments():
+    result = tokenize(';this is a comment line\n(print)')
+    expected = [Token('open'), Token('word', 'print'), Token('close')]
+
+    assert expected == result

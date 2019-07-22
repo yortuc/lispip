@@ -13,8 +13,12 @@ class Token:
 
 def preprocess_string_expression(exp):
     """Clean the expression"""
+    # remove line comments
+    exp = [line for line in exp.split('\n') if len(line)>0 and line[0] != ';']
+    exp = ' '.join(exp)
     exp = exp.replace('\n', ' ')
     
+    # reduce multiple spaces to one
     while exp.find('  ')>0:
         exp = exp.replace('  ', ' ')
 
@@ -61,7 +65,7 @@ def tokenize(exp):
                 string_open = False
             else:
                 string_open = True
-        
+
         else:
             w = w + k
 

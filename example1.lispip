@@ -1,5 +1,9 @@
+; import system modules
 (import url_context)
 (import system_context)
 
+; ask user for username
 (print "Enter username to download repository info")
+
+; download and print user repository info json
 (print (get-json (string-concat "https://api.github.com/users/" (input) "/repos")))
