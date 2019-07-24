@@ -39,3 +39,13 @@ def test_eval_list_functions():
     ast = parse(tokenize("(avg '(1 2 3))"))
     result = evl(ast, ctx)
     assert result == 2.0
+    
+def test_eval_set_variable_string():
+    ast = parse(tokenize('(set user-name "evren")'))
+    result = evl(ast, ctx)
+    assert ctx['user-name'] == "evren"
+
+def test_eval_set_variable_number():
+    ast = parse(tokenize('(set user-id 1546)'))
+    result = evl(ast, ctx)
+    assert ctx['user-id'] == 1546
