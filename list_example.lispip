@@ -1,0 +1,22 @@
+(import system_context)
+
+(defun print-user-list (params lst) 
+    (block
+        (print "Your list contains:")
+        (map print lst)))
+
+; add the item or
+; if input is q, end program
+(defun add-or-quit (params lst user-input)
+    (if (= user-input "q")
+        (print-user-list lst)
+        (ask (list-add lst user-input))))
+
+; ask user to type an item
+(defun ask (params lst) 
+    (block 
+        (print "Type your item. type q to quit")
+        (add-or-quit lst (input))))
+
+; start with an empty list
+(ask '())
