@@ -1,0 +1,14 @@
+(import system_context)
+
+(defun guess (params number-to-guess)
+    (block
+        (print "Please type your guess")
+        (print number-to-guess)
+
+        (if (= number-to-guess (int (input)))
+            (print "You guessed it!")
+            (block  
+                (print "Wrong guess, try again!")
+                (guess number-to-guess)))))
+
+(guess (create-random 1 10))
