@@ -1,0 +1,3 @@
+(import system_context)
+
+(map print (shell curl -I amazon.com))
